@@ -1,11 +1,16 @@
-# Boilerplate2
+# Client List
 
-This is a boilerplate for Vue, Express, and MongoDB using Mongoose but without Vue-Cli
+This is a technical assessement
 
 # Instructions
 
-$ npm install This installs all dependencies
-$ npm run build Webpack builds the dependency graph and creates a bundle in /public
-$ npm start This stars the express server which will start the DB
+Install all dependencies
+$ npm install
+
+Build Webpack builds the dependency graph and creates a bundle in /public
+$ npm run
+
+Start the express server and DB
+$ npm start
 
 To name the database what you want open server/database/index.js and change the yourDB variable value to what you would like the database name to be.
