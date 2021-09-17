@@ -1,0 +1,44 @@
+{
+  "name": "boilerplate2",
+  "version": "1.0.0",
+  "description": "This is a boilderplate for Vue/Express/MongoDB projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack --watch",
+    "start": "nodemon server -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sithistorian/Boilerplate2.git"
+  },
+  "author": "Tristan Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sithistorian/Boilerplate2/issues"
+  },
+  "homepage": "https://github.com/Sithistorian/Boilerplate2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5",
+    "vue": "^3.2.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@vue/compiler-sfc": "^3.2.11",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
+    "nodemon": "^2.0.12",
+    "style-loader": "^3.2.1",
+    "vue-loader-v16": "^16.0.0-beta.5.4",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
