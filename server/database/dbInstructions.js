@@ -27,5 +27,11 @@ const Provider = mongoose.model(
   })
 )
 
+//save some dummy data to the db
+
+module.exports {
+  Client,
+  Provider
+}
 
 
