@@ -13,15 +13,27 @@ const getAllProviders = async function () {
   })
   .catch(err => console.log('Could not get providers', err))
 
-  console.log('HERE', providers)
   return providers;
 
 }
 
-
-
-
 // Get single Provider by Id
+
+const getProviderById = async function (id) {
+
+  let provider = await Provider.findById(id)
+  .lean()
+  .then(doc => {
+    console.log('The provider was sucessfully read');
+    return doc
+  })
+  .catch(err => console.log('Could not get provider', err))
+
+  console.log('HERE', provider);
+  return provider;
+}
+
+// getProviderById('61464982e6b9e39a66de63ed')
 
 // Get single Provider Id by name
 
