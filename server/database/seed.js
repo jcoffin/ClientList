@@ -1,7 +1,6 @@
-const { Client, Provider } = require('./dbInstructions.js')
+const { Client, Provider } = require('./dbModels.js')
 const db = require('./index.js')
 
-console.log(Client)
 
 let clients = [
   {
@@ -54,4 +53,5 @@ Client.insertMany(clients)
 Provider.insertMany(providers)
 .then(doc => console.log(`${doc} has been added`))
 .catch(err => console.log('Did not insert providers', err))
+
 

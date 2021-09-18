@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const db = require('./index.js')
 
-//Create Client and Provider collections and populate them with dummy documents
+//Create Client and Provider Models
 
 const Client = mongoose.model(
   "Client",
