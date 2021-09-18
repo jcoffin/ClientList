@@ -7,10 +7,13 @@ This is a technical assessement
 Install all dependencies
 $ npm install
 
-Build Webpack builds the dependency graph and creates a bundle in /public
+Build Webpack
 $ npm run
 
-Start the express server and DB
+Start the express server and database
 $ npm start
+
+Seed database with provided data
+$ npm run seed
 
 To name the database what you want open server/database/index.js and change the yourDB variable value to what you would like the database name to be.
