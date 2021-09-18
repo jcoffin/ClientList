@@ -69,5 +69,22 @@ const createNewProvider = async function (provider) {
 // })
 
 // Update Provider Information
+  // Change name
+
+const changeProviderName = async function (currentProviderName, newProviderName) {
+
+Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, {
+  new: true,
+  lean: true
+})
+.then(doc => {
+  console.log(`Provider name changed from ${currentProviderName} to ${newProviderName}`);
+  return doc
+})
+.catch(err => console.log('Could not change name', err))
+
+}
+  // Add clients
+  // Remove clients
 
 // Delete Provider
