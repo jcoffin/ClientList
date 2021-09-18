@@ -17,7 +17,7 @@ const getAllProviders = async function () {
 
 }
 
-// Get single Provider by Id
+// Get single Provider by Id (takes a string as a paramater)
 
 const getProviderById = async function (id) {
 
@@ -33,9 +33,21 @@ const getProviderById = async function (id) {
   return provider;
 }
 
-// getProviderById('61464982e6b9e39a66de63ed')
-
 // Get single Provider Id by name
+
+const getProviderByName = async function (providerName) {
+
+  let provider = await Provider.find({name: providerName})
+  .lean()
+  .then(doc => {
+    console.log(`Sucessfully read ${providerName}`);
+    return doc
+  })
+  .catch(err => console.log(`Could not read ${providerName}`, err))
+
+  return provider;
+}
+
 
 // Add new Provider
 
