@@ -48,8 +48,25 @@ const getProviderByName = async function (providerName) {
   return provider;
 }
 
+// Create new Provider (this will take an object with a name: String, client: array of Client ids as Strings)
 
-// Add new Provider
+const createNewProvider = async function (provider) {
+
+  Provider.create({
+    name: provider.name,
+    clients: provider.clients
+  })
+  .then(doc => {
+    console.log(`${provider.name} was successfully saved to the database`);
+  })
+  .catch(err => console.log(`${provider.name} was NOT successfully saved to the database`, err))
+
+}
+
+// createNewProvider({
+//   name: 'Provider33',
+//   clients: ["61464982e6b9e39a66de63ee", "61464982e6b9e39a66de63ed"]
+// })
 
 // Update Provider Information
 
