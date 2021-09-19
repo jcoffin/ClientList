@@ -8,8 +8,8 @@ const getAllProviders = async function () {
   let providers = await Provider.find({})
   .lean()
   .then(doc => {
-    console.log('Here are the providers you requested')
-    return doc
+    console.log('Here are the providers you requested');
+    return doc;
   })
   .catch(err => console.log('Could not get providers', err))
 
@@ -29,7 +29,6 @@ const getProviderById = async function (id) {
   })
   .catch(err => console.log('Could not get provider', err))
 
-  console.log('HERE', provider);
   return provider;
 }
 
