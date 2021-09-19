@@ -1,5 +1,5 @@
-const db = require('../database/index.js')
-const { Client } = require('../database/dbModels.js')
+const db = require('../database/index.js');
+const { Client } = require('../database/dbModels.js');
 
 // Get all Clients
 
@@ -31,7 +31,7 @@ const getClientById = async function (id) {
 
 // Get single Client by name
 
-const getClientByName = async function (clientName) {
+const getClientByName = async function(clientName) {
 
   let client = await Client.find({name: clientName})
   .lean()
@@ -44,10 +44,28 @@ const getClientByName = async function (clientName) {
   return client;
 }
 
-getClientByName('Test')
+// Add new Client (this will take a client object as a parameter)
 
-// Add new Client
+const createClient = async function(client) {
+
+  Client.create({
+    name: client.name,
+    email: client.email,
+    phone: client.phone,
+    providers: client.providers
+  })
+  .then(doc => {
+    console.log('Client sucessfully created')
+  })
+  .catch(err => console.log('Could not create client', err))
+}
 
 // Update Client Information
 
 // Delete Client
+
+module.exports = {
+  getAllClients,
+  getClientById,
+  getClientByName
+}

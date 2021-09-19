@@ -152,3 +152,11 @@ const getClientsAndProvidersPopulated = async function() {
 // Remove Client entirely
 
 
+module.exports = {
+  linkClientWithProvider,
+  addMultipleProviders,
+  removeProvider,
+  removeMultipleProviders,
+  getClientsAndProviders,
+  getClientsAndProvidersPopulated
+}

@@ -83,3 +83,11 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
   // To remove a client see clientAndProvider.js
 
 // Delete Provider
+
+module.exports = {
+  getAllProviders,
+  getProviderById,
+  getProviderByName,
+  createNewProvider,
+  changeProviderName
+}
