@@ -26,11 +26,25 @@ const getClientById = async function (id) {
   })
   .catch(err => console.log('Could not get client', err))
 
-  console.log(client)
   return client;
 }
 
-// Get single Client Id by name
+// Get single Client by name
+
+const getClientByName = async function (clientName) {
+
+  let client = await Client.find({name: clientName})
+  .lean()
+  .then(doc => {
+    console.log(`Sucessfully read ${clientName}`);
+    return doc
+  })
+  .catch(err => console.log(`Could not read ${clientName}`, err))
+
+  return client;
+}
+
+getClientByName('Test')
 
 // Add new Client
 

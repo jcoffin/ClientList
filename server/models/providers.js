@@ -32,7 +32,7 @@ const getProviderById = async function (id) {
   return provider;
 }
 
-// Get single Provider Id by name
+// Get single Provider by name
 
 const getProviderByName = async function (providerName) {
 
@@ -61,11 +61,6 @@ const createNewProvider = async function (provider) {
   .catch(err => console.log(`${provider.name} was NOT successfully saved to the database`, err))
 
 }
-
-// createNewProvider({
-//   name: 'Provider33',
-//   clients: ["61464982e6b9e39a66de63ee", "61464982e6b9e39a66de63ed"]
-// })
 
 // Update Provider Information
   // Change name

@@ -149,4 +149,6 @@ const getClientsAndProvidersPopulated = async function() {
 
 }
 
+// Remove Client entirely
+
 
