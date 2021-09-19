@@ -40,7 +40,33 @@ const addMultipleProviders = async function (clientId, arrayOfProvidersIds) {
   asyncLoop();
 }
 
-// Remove client from provider
+// Remove provider from client
+
+const removeProvider = async function (clientId, providerId) {
+
+  let promise1 = Provider.findByIdAndUpdate(providerId, {$pull: {clients: clientId}}, {new: true})
+  .then(doc => {
+    console.log(`Client ${clientId} added to provider ${providerId}`);
+    return doc;
+  })
+  .catch(err => console.log(`Client ${clientId} was NOT added to provider ${providerId}`, err))
+
+  let promise2 = Client.findByIdAndUpdate(clientId, {$pull: {providers: providerId}}, {new: true})
+  .then(doc => {
+    console.log(`Provider ${providerId} removed from client ${clientId} `);
+    return doc;
+  })
+  .catch(err => console.log(`Provider ${providerId} was NOT removed from client ${clientId} `, err))
+
+  Promise.all([promise1, promise2])
+  .then(values => {
+    console.log('Removal was sucessful', values[0], values[1]);
+    return values;
+  })
+  .catch(err => console.log('Something went wrong', err))
+
+}
+
 
 // Delete provider entirely
 
