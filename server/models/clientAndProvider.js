@@ -79,9 +79,44 @@ const removeMultipleProviders = async function(clientId, arrayOfProvidersIds) {
   asyncLoop();
 }
 
-// Delete provider entirely
+// Get data as shown in prompt
 
-// Get data
+const getClientsAndProviders = async function() {
+
+  let promise1 = Client.find({})
+  .lean()
+  .then(docs => {
+    docs.forEach(doc => {
+      delete doc['__v'];
+    })
+    return docs
+  })
+  .catch(err => console.log('Could not read clients from database', err))
+
+  let promise2 = Provider.find({})
+  .lean()
+  .then(docs => {
+    docs.forEach(doc => {
+      delete doc['clients'];
+      delete doc['__v'];
+    })
+    return docs;
+  })
+  .catch(err => console.log('Could not read providers from database', err))
+
+  Promise.all([promise1, promise2])
+  .then(values => {
+    console.log('Successfully read all clients and providers');
+    let data = {};
+    data.clients = values[0];
+    data.providers = values[1];
+    console.log(data)
+    return data;
+  })
+  .catch(err => console.log('Something went wrong', err))
+}
+
+console.log(getClientsAndProviders())
 
 // Get Clients Populated
 
