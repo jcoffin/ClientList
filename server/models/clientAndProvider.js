@@ -28,10 +28,9 @@ const linkClientWithProvider = async function (clientId, providerId) {
 
 }
 
-// Add multiple providers to single Client
+// Add multiple providersIds to single Client's providers array and that clientId to all provider's client array that are in the second argument
 
 const addMultipleProviders = async function (clientId, arrayOfProvidersIds) {
-  // need a promise that adds all the providers in the array to the client array
 
   const asyncLoop = async function () {
     for (let i = 0; i < arrayOfProvidersIds.length; i++) {
@@ -40,14 +39,6 @@ const addMultipleProviders = async function (clientId, arrayOfProvidersIds) {
   }
   asyncLoop();
 }
-//Test1 and all providers
-addMultipleProviders("61474c173acc1d07c8a49634", [
-  "61474c173acc1d07c8a4963a",
-  "61474c173acc1d07c8a49639",
-  "61474c173acc1d07c8a49638",
-  "61474c173acc1d07c8a49637",
-  "61474c173acc1d07c8a49636"
-])
 
 // Remove client from provider
 
