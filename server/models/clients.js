@@ -15,9 +15,20 @@ const getAllClients = async function () {
   return clients;
 }
 
-getAllClients()
-
 // Get single Client by Id
+
+const getClientById = async function (id) {
+  let client = await Client.findById(id)
+  .lean()
+  .then(doc => {
+    console.log('The client was sucessfully read');
+    return doc
+  })
+  .catch(err => console.log('Could not get client', err))
+
+  console.log(client)
+  return client;
+}
 
 // Get single Client Id by name
 
