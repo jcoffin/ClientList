@@ -67,6 +67,17 @@ const removeProvider = async function (clientId, providerId) {
 
 }
 
+// Remove multiple providers at once from a client
+
+const removeMultipleProviders = async function(clientId, arrayOfProvidersIds) {
+
+  let asyncLoop = async function () {
+    for (let i = 0; i < arrayOfProvidersIds.length; i++) {
+      await removeProvider(clientId, arrayOfProvidersIds[i])
+    }
+  }
+  asyncLoop();
+}
 
 // Delete provider entirely
 
