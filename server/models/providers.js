@@ -63,7 +63,7 @@ const createNewProvider = async function (provider) {
 }
 
 // Update Provider Information
-  // Change name
+  // Change provider name
 
 const changeProviderName = async function (currentProviderName, newProviderName) {
 
@@ -78,11 +78,10 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
 .catch(err => console.log('Could not change name', err))
 
 }
-  // To add a client see clientAndProvider.js linkClientWithProvider
-
-  // To remove a client see clientAndProvider.js
 
 // Delete Provider
+
+
 
 module.exports = {
   getAllProviders,

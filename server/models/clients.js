@@ -67,5 +67,6 @@ const createClient = async function(client) {
 module.exports = {
   getAllClients,
   getClientById,
-  getClientByName
+  getClientByName,
+  createClient
 }

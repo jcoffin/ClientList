@@ -40,16 +40,16 @@ const addMultipleProviders = async function (clientId, arrayOfProvidersIds) {
   asyncLoop();
 }
 
-// Remove provider from client
+// Remove provider from client's provider array
 
 const removeProvider = async function (clientId, providerId) {
 
   let promise1 = Provider.findByIdAndUpdate(providerId, {$pull: {clients: clientId}}, {new: true})
   .then(doc => {
-    console.log(`Client ${clientId} added to provider ${providerId}`);
+    console.log(`Client ${clientId} removed from provider ${providerId}`);
     return doc;
   })
-  .catch(err => console.log(`Client ${clientId} was NOT added to provider ${providerId}`, err))
+  .catch(err => console.log(`Client ${clientId} was NOT removed from provider ${providerId}`, err))
 
   let promise2 = Client.findByIdAndUpdate(clientId, {$pull: {providers: providerId}}, {new: true})
   .then(doc => {
@@ -67,7 +67,7 @@ const removeProvider = async function (clientId, providerId) {
 
 }
 
-// Remove multiple providers at once from a client
+// Remove multiple providers at once from a client's provider array
 
 const removeMultipleProviders = async function(clientId, arrayOfProvidersIds) {
 
@@ -149,7 +149,45 @@ const getClientsAndProvidersPopulated = async function() {
 
 }
 
-// Remove Client entirely
+// Delete Client
+
+const deleteClient = async function (clientId) {
+
+let clientProviders = await Client.findById(clientId)
+.then(doc => {
+  return doc.providers;
+})
+.catch(err => console.log('Did not get providers', err))
+
+  let asyncLoop = async function (clientId) {
+    for(let i = 0; i < clientProviders.length; i++) {
+      await removeProvider(clientId, clientProviders[i]);
+    }
+  }
+  await asyncLoop(clientId);
+
+  Client.findByIdAndDelete(clientId)
+.then(doc => {
+  console.log('Sucessfully removed client');
+  return doc
+})
+.catch(err => console.log('Did not remove client', err))
+
+}
+
+
+
+//provider1 and Krayt
+
+// addMultipleProviders("61474c173acc1d07c8a49633", [
+//   "61474c173acc1d07c8a4963a",
+//   "61474c173acc1d07c8a49639",
+//   "61474c173acc1d07c8a49638",
+//   "61474c173acc1d07c8a49637",
+//   "61474c173acc1d07c8a49636"
+// ])
+
+deleteClient("61474c173acc1d07c8a49633")
 
 
 module.exports = {
