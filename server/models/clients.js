@@ -213,6 +213,7 @@ module.exports = {
   getClientsAndProviders,
   getClientsAndProvidersPopulated,
   addProviderToClientUsingId,
+  addProviderToClientUsingName,
   addMultipleProvidersToClient,
   removeProviderFromClient,
   removeMultipleProvidersFromClient,

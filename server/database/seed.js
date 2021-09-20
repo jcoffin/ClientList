@@ -63,16 +63,20 @@ let seed = async function () {
   .then(docs => docs)
   .catch(err => console.log('Something went wrong', err))
 
-  console.log('moving on to add Providers', allProviders)
-
   let addProviders = async function () {
-    let testProviders = ['Provider1', 'Provider3', 'Provider4']
+    let testProviders = ['Provider1', 'Provider3', 'Provider5'];
+    let test1Providers = ['Provider3'];
+    let test2Providers = ['Provider2', 'Provider4']
 
     for (i = 0; i < allProviders.length; i++) {
       if (testProviders.includes(allProviders[i].name)) {
-        await Client.findOneAndUpdate({name: "Test"}, {$push: {providers: allProviders[i]._id }})
-        .then(() => console.log(`${allProviders[i]._id} was pushed`))
-        .catch(err => console.log('An error occured adding the provider', err))
+        await client.addProviderToClientUsingName('Test', allProviders[i]._id)
+      }
+      if (test1Providers.includes(allProviders[i].name)) {
+        await client.addProviderToClientUsingName('Test1', allProviders[i]._id)
+      }
+      if (test2Providers.includes(allProviders[i].name)) {
+        await client.addProviderToClientUsingName('Test2', allProviders[i]._id)
       }
     }
   }
