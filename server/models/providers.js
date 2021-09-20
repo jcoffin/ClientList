@@ -32,17 +32,17 @@ const getProviderById = async function (id) {
   return provider;
 }
 
-// Get single Provider by email
+// Get single Provider by name
 
-const getProviderByEmail = async function (providerEmail) {
+const getProviderByName = async function (providerName) {
 
-  let provider = await Provider.find({email: providerEmail})
+  let provider = await Provider.find({name: providerName})
   .lean()
   .then(doc => {
-    console.log(`Sucessfully read ${providerEmail}`);
+    console.log(`Sucessfully read ${providerName}`);
     return doc
   })
-  .catch(err => console.log(`Could not read ${providerEmail}`, err))
+  .catch(err => console.log(`Could not read ${providerName}`, err))
 
   return provider;
 }
@@ -73,6 +73,7 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
   lean: true
 })
 .then(doc => {
+  //I could do error handling here but it feels hacky
   console.log(`Provider name changed from ${currentProviderName} to ${newProviderName}`);
   return doc
 })
@@ -80,7 +81,7 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
 
 }
 
-changeProviderName('Sharmane', 'MixedGirlMane')
+changeProviderName('MixedGirlMane', 'Sharmane')
 
 // Delete Provider
 
