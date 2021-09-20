@@ -1,2 +1,3 @@
-const clients = require('./clients.js');
-const providers = require('./providers.js');
+exports.clients = require('./clients.js');
+exports.providers = require('./providers.js');
+

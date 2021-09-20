@@ -1,4 +1,5 @@
-const { Client, Provider } = require('./dbModels.js')
+const { Client, Provider } = require('./dbModels.js');
+const model = require('../models/index.js')
 const db = require('./index.js')
 
 
@@ -46,12 +47,21 @@ let providers = [
   },
 ]
 
-Client.insertMany(clients)
-.then(doc => console.log(`${doc} has been added`))
-.catch(err => console.log('Did not insert clients', err))
+let seed = async function () {
 
-Provider.insertMany(providers)
-.then(doc => console.log(`${doc} has been added`))
-.catch(err => console.log('Did not insert providers', err))
+  await Client.insertMany(clients)
+  .then(doc => console.log(`${doc} has been added`))
+  .catch(err => console.log('Did not insert clients', err))
+
+  await Provider.insertMany(providers)
+  .then(doc => console.log(`${doc} has been added`))
+  .catch(err => console.log('Did not insert providers', err))
 
 
+  let Provider1Id = await model.clients.getProviderByName('Provider1')
+  .then(doc => doc._id)
+
+  console.log('Here is the DATA I SEEK', Provider1Id)
+}
+
+seed()
