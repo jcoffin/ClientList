@@ -1,37 +1,37 @@
 const mongoose = require('mongoose');
 const db = require('./index.js')
 
-//Create Client and Provider Models
+//Create Client Schema
 
-const Client = mongoose.model(
-  "Client",
-  new mongoose.Schema({
-    name: {
-      type: String,
-      unique: true
-    },
-    email: String,
-    phone: Number,
-    providers: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Provider"
-    }]
-  })
-)
+const clientSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    unique: true
+  },
+  email: String,
+  phone: Number,
+  providers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Provider"
+  }]
+});
 
-const Provider = mongoose.model(
-  "Provider",
-  new mongoose.Schema({
-    name: {
-      type: String,
-      unique: true
-    },
-    clients: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Client"
-    }]
-  })
-)
+//Create Client Model
+
+const Client = mongoose.model("Client", clientSchema);
+
+//Create Provider Schema
+
+const providerSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    unique: true
+  }
+});
+
+//Create Provder Model
+
+const Provider = mongoose.model("Provider", providerSchema);
 
 module.exports = {
   Client,
