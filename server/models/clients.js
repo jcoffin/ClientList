@@ -62,11 +62,75 @@ const createClient = async function(client) {
 
 // Update Client Information
 
+// This adds a providerId to the client's provider array
+
+const addProviderToClient = async function (clientId, providerId) {
+
+  Client.findByIdAndUpdate(clientId, {$push: {providers: providerId}}, {new: true})
+  .then(doc => {
+    console.log(`Provider ${providerId} added to client ${clientId} `);
+    return doc;
+  })
+  .catch(err => console.log(`Provider ${providerId} was NOT added to client ${clientId} `, err))
+
+}
+
+// This adds multiple providerIds to the client's provider array
+
+const addMultipleProvidersToClient = async function (clientId, arrayOfProvidersIds) {
+
+  const asyncLoop = async function () {
+    for (let i = 0; i < arrayOfProvidersIds.length; i++) {
+      await addProviderToClient(clientId, arrayOfProvidersIds[i])
+    }
+  }
+  asyncLoop();
+}
+
+// Remove provider from client's provider array
+
+const removeProviderFromClient = async function (clientId, providerId) {
+
+  Client.findByIdAndUpdate(clientId, {$pull: {providers: providerId}}, {new: true})
+  .then(doc => {
+    console.log(`Provider ${providerId} removed from client ${clientId} `);
+    return doc;
+  })
+  .catch(err => console.log(`Provider ${providerId} was NOT removed from client ${clientId} `, err))
+}
+
+// Remove multiple providers at once from a client's provider array
+
+const removeMultipleProvidersFromClient = async function(clientId, arrayOfProvidersIds) {
+
+  let asyncLoop = async function () {
+    for (let i = 0; i < arrayOfProvidersIds.length; i++) {
+      await removeProviderFromClient(clientId, arrayOfProvidersIds[i])
+    }
+  }
+  asyncLoop();
+}
+
 // Delete Client
 
+const deleteClient = async function (clientId) {
+
+  Client.findByIdAndDelete(clientId)
+  .then(doc => {
+    console.log('Sucessfully removed client');
+    return doc
+  })
+  .catch(err => console.log('Did not remove client', err))
+
+  }
+
 module.exports = {
+  addProviderToClient,
+  addMultipleProvidersToClient,
+  removeProviderFromClient,
+  removeMultipleProvidersFromClient,
   getAllClients,
   getClientById,
-  getClientByName,
+  getClientByEmail,
   createClient
 }
