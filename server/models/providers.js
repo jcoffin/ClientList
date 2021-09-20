@@ -52,8 +52,7 @@ const getProviderByName = async function (providerName) {
 const createNewProvider = async function (provider) {
 
   Provider.create({
-    name: provider.name,
-    clients: provider.clients
+    name: provider.name
   })
   .then(doc => {
     console.log(`${provider.name} was successfully saved to the database`);

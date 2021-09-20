@@ -4,11 +4,11 @@ const db = require('./index.js')
 //Create Client Schema
 
 const clientSchema = new mongoose.Schema({
-  name: {
+  name: String,
+  email: {
     type: String,
     unique: true
   },
-  email: String,
   phone: Number,
   providers: [{
     type: mongoose.Schema.Types.ObjectId,
