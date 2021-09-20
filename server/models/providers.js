@@ -32,17 +32,17 @@ const getProviderById = async function (id) {
   return provider;
 }
 
-// Get single Provider by name
+// Get single Provider by email
 
-const getProviderByName = async function (providerName) {
+const getProviderByEmail = async function (providerEmail) {
 
-  let provider = await Provider.find({name: providerName})
+  let provider = await Provider.find({email: providerEmail})
   .lean()
   .then(doc => {
-    console.log(`Sucessfully read ${providerName}`);
+    console.log(`Sucessfully read ${providerEmail}`);
     return doc
   })
-  .catch(err => console.log(`Could not read ${providerName}`, err))
+  .catch(err => console.log(`Could not read ${providerEmail}`, err))
 
   return provider;
 }
@@ -64,6 +64,8 @@ const createNewProvider = async function (provider) {
 // Update Provider Information
   // Change provider name
 
+  //issue: when the currentProviderName is not not correct, no document is found, but I still get the message back. Error handleing is incorrect. This may not be used in the app anyway
+
 const changeProviderName = async function (currentProviderName, newProviderName) {
 
 Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, {
@@ -77,6 +79,8 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
 .catch(err => console.log('Could not change name', err))
 
 }
+
+changeProviderName('Sharmane', 'MixedGirlMane')
 
 // Delete Provider
 
