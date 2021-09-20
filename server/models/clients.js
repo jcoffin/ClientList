@@ -88,7 +88,6 @@ const addProviderToClientUsingName = async function (clientName, providerId) {
 
 }
 
-
 // This adds multiple providerIds to the client's provider array
 
 const addMultipleProvidersToClient = async function (clientId, arrayOfProvidersIds) {
