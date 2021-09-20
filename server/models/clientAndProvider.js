@@ -40,15 +40,16 @@ const removeProviderFromClient = async function (clientId, providerId) {
 
 // Remove multiple providers at once from a client's provider array
 
-const removeMultipleProviders = async function(clientId, arrayOfProvidersIds) {
+const removeMultipleProvidersFromClient = async function(clientId, arrayOfProvidersIds) {
 
   let asyncLoop = async function () {
     for (let i = 0; i < arrayOfProvidersIds.length; i++) {
-      await removeProvider(clientId, arrayOfProvidersIds[i])
+      await removeProviderFromClient(clientId, arrayOfProvidersIds[i])
     }
   }
   asyncLoop();
 }
+
 
 // Get data as shown in prompt
 
@@ -151,7 +152,7 @@ module.exports = {
   addProviderToClient,
   addMultipleProvidersToClient,
   removeProviderFromClient,
-  removeMultipleProviders,
+  removeMultipleProvidersFromClient,
   getClientsAndProviders,
   getClientsAndProvidersPopulated
 }
