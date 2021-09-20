@@ -1,6 +1,6 @@
-const { Client, Provider } = require('./dbModels.js');
-const model = require('../models/index.js')
-const db = require('./index.js')
+const { Client, Provider } = require('./dbModels.js'); //these are the mongoDB models
+const {client, provider } = require('../models/index.js'); //these are the query models
+const db = require('./index.js');
 
 
 let clients = [
@@ -58,10 +58,26 @@ let seed = async function () {
   .catch(err => console.log('Did not insert providers', err))
 
 
-  let Provider1Id = await model.clients.getProviderByName('Provider1')
-  .then(doc => doc._id)
+  let allProviders = await Provider.find({})
+  .lean()
+  .then(docs => docs)
+  .catch(err => console.log('Something went wrong', err))
 
-  console.log('Here is the DATA I SEEK', Provider1Id)
+  console.log('moving on to add Providers', allProviders)
+
+  let addProviders = async function () {
+    let testProviders = ['Provider1', 'Provider3', 'Provider4']
+
+    for (i = 0; i < allProviders.length; i++) {
+      if (testProviders.includes(allProviders[i].name)) {
+        await Client.findOneAndUpdate({name: "Test"}, {$push: {providers: allProviders[i]._id }})
+        .then(() => console.log(`${allProviders[i]._id} was pushed`))
+        .catch(err => console.log('An error occured adding the provider', err))
+      }
+    }
+  }
+  addProviders()
+
 }
 
 seed()

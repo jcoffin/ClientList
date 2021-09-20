@@ -62,9 +62,9 @@ const createClient = async function(client) {
 
 // Update Client Information
 
-// This adds a providerId to the client's provider array
+// This adds a providerId to the client's provider array given the client's Id
 
-const addProviderToClient = async function (clientId, providerId) {
+const addProviderToClientUsingId = async function (clientId, providerId) {
 
   Client.findByIdAndUpdate(clientId, {$push: {providers: providerId}}, {new: true})
   .then(doc => {
@@ -74,6 +74,20 @@ const addProviderToClient = async function (clientId, providerId) {
   .catch(err => console.log(`Provider ${providerId} was NOT added to client ${clientId} `, err))
 
 }
+
+// This adds a providerId to the client's provider array given the clients' name
+
+const addProviderToClientUsingName = async function (clientName, providerId) {
+
+  Client.findOneAndUpdate({name: clientName}, {$push: {providers: providerId}}, {new: true})
+  .then(doc => {
+    console.log(`Provider ${providerId} added to ${clientName} `);
+    return doc;
+  })
+  .catch(err => console.log(`Provider ${providerId} was NOT added to ${clientName} `, err))
+
+}
+
 
 // This adds multiple providerIds to the client's provider array
 
@@ -198,7 +212,7 @@ const getClientsAndProvidersPopulated = async function() {
 module.exports = {
   getClientsAndProviders,
   getClientsAndProvidersPopulated,
-  addProviderToClient,
+  addProviderToClientUsingId,
   addMultipleProvidersToClient,
   removeProviderFromClient,
   removeMultipleProvidersFromClient,
