@@ -14,19 +14,24 @@ const addProviderToClient = async function (clientId, providerId) {
 
 }
 
-addProviderToClient("6148a07a298152bb3cf48c14", "6148a37489fd79eebfd2b6f8")
-
 // Add multiple providersIds to single Client's providers array and that clientId to all provider's client array that are in the second argument
 
-const addMultipleProviders = async function (clientId, arrayOfProvidersIds) {
+const addMultipleProvidersToClient = async function (clientId, arrayOfProvidersIds) {
 
   const asyncLoop = async function () {
     for (let i = 0; i < arrayOfProvidersIds.length; i++) {
-      await linkClientWithProvider(clientId, arrayOfProvidersIds[i])
+      await addProviderToClient(clientId, arrayOfProvidersIds[i])
     }
   }
   asyncLoop();
 }
+
+addMultipleProvidersToClient("6148a07a298152bb3cf48c15", [
+  "6148a07a298152bb3cf48c16",
+  "6148a07a298152bb3cf48c15",
+  "6148a07a298152bb3cf48c14",
+  "6148a37489fd79eebfd2b6f8"
+])
 
 // Remove provider from client's provider array
 
@@ -164,23 +169,9 @@ let clientProviders = await Client.findById(clientId)
 }
 
 
-
-//provider1 and Krayt
-
-// addMultipleProviders("61474c173acc1d07c8a49633", [
-//   "61474c173acc1d07c8a4963a",
-//   "61474c173acc1d07c8a49639",
-//   "61474c173acc1d07c8a49638",
-//   "61474c173acc1d07c8a49637",
-//   "61474c173acc1d07c8a49636"
-// ])
-
-deleteClient("61474c173acc1d07c8a49633")
-
-
 module.exports = {
   addProviderToClient,
-  addMultipleProviders,
+  addMultipleProvidersToClient,
   removeProvider,
   removeMultipleProviders,
   getClientsAndProviders,
