@@ -81,8 +81,6 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
 
 }
 
-changeProviderName('MixedGirlMane', 'Sharmane')
-
 // Delete Provider
 
 

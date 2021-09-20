@@ -31,15 +31,15 @@ const getClientById = async function (id) {
 
 // Get single Client by name
 
-const getClientByName = async function(clientName) {
+const getClientByEmail = async function(clientEmail) {
 
-  let client = await Client.find({name: clientName})
+  let client = await Client.find({email: clientEmail})
   .lean()
   .then(doc => {
-    console.log(`Sucessfully read ${clientName}`);
+    console.log('Sucessfully read client');
     return doc
   })
-  .catch(err => console.log(`Could not read ${clientName}`, err))
+  .catch(err => console.log('Could not read client', err))
 
   return client;
 }
