@@ -26,38 +26,16 @@ const addMultipleProvidersToClient = async function (clientId, arrayOfProvidersI
   asyncLoop();
 }
 
-addMultipleProvidersToClient("6148a07a298152bb3cf48c15", [
-  "6148a07a298152bb3cf48c16",
-  "6148a07a298152bb3cf48c15",
-  "6148a07a298152bb3cf48c14",
-  "6148a37489fd79eebfd2b6f8"
-])
-
 // Remove provider from client's provider array
 
-const removeProvider = async function (clientId, providerId) {
+const removeProviderFromClient = async function (clientId, providerId) {
 
-  let promise1 = Provider.findByIdAndUpdate(providerId, {$pull: {clients: clientId}}, {new: true})
-  .then(doc => {
-    console.log(`Client ${clientId} removed from provider ${providerId}`);
-    return doc;
-  })
-  .catch(err => console.log(`Client ${clientId} was NOT removed from provider ${providerId}`, err))
-
-  let promise2 = Client.findByIdAndUpdate(clientId, {$pull: {providers: providerId}}, {new: true})
+  Client.findByIdAndUpdate(clientId, {$pull: {providers: providerId}}, {new: true})
   .then(doc => {
     console.log(`Provider ${providerId} removed from client ${clientId} `);
     return doc;
   })
   .catch(err => console.log(`Provider ${providerId} was NOT removed from client ${clientId} `, err))
-
-  Promise.all([promise1, promise2])
-  .then(values => {
-    console.log('Removal was sucessful', values[0], values[1]);
-    return values;
-  })
-  .catch(err => console.log('Something went wrong', err))
-
 }
 
 // Remove multiple providers at once from a client's provider array
@@ -172,7 +150,7 @@ let clientProviders = await Client.findById(clientId)
 module.exports = {
   addProviderToClient,
   addMultipleProvidersToClient,
-  removeProvider,
+  removeProviderFromClient,
   removeMultipleProviders,
   getClientsAndProviders,
   getClientsAndProvidersPopulated
