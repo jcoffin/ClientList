@@ -223,5 +223,6 @@ module.exports = {
   getClientById,
   getClientByEmail,
   createClient,
-  deleteClient
+  deleteClient,
+  modifyClient
 }
