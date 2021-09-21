@@ -30,6 +30,7 @@ app.post('/clients/addMultipleProviders', clients.addMultipleProvidersToClient)
 app.put('/clients/removeProvider', clients.removeProviderFromClient)
 app.put('/clients/removeMultipleProviders', clients.removeMultipleProvidersFromClient)
 app.post('/clients/deleteClient', clients.deleteClient)
+app.get('/all', clients.getClientsAndProviders)
 
 
 

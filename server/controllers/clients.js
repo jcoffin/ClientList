@@ -74,6 +74,14 @@ const deleteClient = async function(req, res) {
   .catch(err => console.log('Something went wrong', err))
 }
 
+const getClientsAndProviders = async function(req, res){
+  client.getClientsAndProviders()
+  .then(doc => {
+    res.send(doc);
+  })
+  .catch(err => console.log('Something went wrong', err))
+}
+
 
 module.exports = {
   getAllClients,
@@ -85,6 +93,7 @@ module.exports = {
   addMultipleProvidersToClient,
   removeProviderFromClient,
   removeMultipleProvidersFromClient,
-  deleteClient
+  deleteClient,
+  getClientsAndProviders
 }
 
