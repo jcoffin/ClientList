@@ -29,6 +29,7 @@ app.post('/clients/addProviderByEmail', clients.addProviderToClientUsingEmail) /
 app.post('/clients/addMultipleProviders', clients.addMultipleProvidersToClient)
 app.put('/clients/removeProvider', clients.removeProviderFromClient)
 app.put('/clients/removeMultipleProviders', clients.removeMultipleProvidersFromClient)
+app.post('/clients/deleteClient', clients.deleteClient)
 
 
 

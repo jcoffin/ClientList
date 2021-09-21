@@ -219,5 +219,6 @@ module.exports = {
   getAllClients,
   getClientById,
   getClientByEmail,
-  createClient
+  createClient,
+  deleteClient
 }
