@@ -23,6 +23,8 @@ app.post('/providers/changeName', providers.changeProviderName) //This route req
 app.get('/clients', clients.getAllClients)
 app.get('/clients/id/:clientId', clients.getClientById)
 app.get('/clients/email/:clientEmail', clients.getClientByEmail)
+app.post('/clients', clients.createClient)
+
 
 
 

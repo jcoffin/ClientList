@@ -26,10 +26,18 @@ const getClientByEmail = async function (req, res) {
   res.send(responseData)
 }
 
+const createClient = async function (req, res) {
+
+  client.createClient(req.body)
+  .then(() => res.send('Client created'))
+  .catch(err => console.log('Something went wrong', err))
+}
+
 
 module.exports = {
   getAllClients,
   getClientById,
-  getClientByEmail
+  getClientByEmail,
+  createClient
 }
 
