@@ -12,7 +12,9 @@ app.use(express.static('./public'));
 
 //ROUTES
 
+// Get all the providers
 app.get('/providers', providers.getProviders)
+app.get('/providers/:providerId', providers.getProviderById)
 
 
 
