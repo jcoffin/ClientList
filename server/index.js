@@ -18,9 +18,9 @@ app.post('/providers/createNewProvider', providers.createNewProvider)
 
 // Routes for Clients
 app.get('/clients/id/:clientId', clients.getClientById)
+app.get('/all', clients.getAll) //Has option: populated: true to get providers added
 app.post('/clients', clients.createClient)
 app.post('/clients/deleteClient', clients.deleteClient)
-app.get('/all', clients.getAll) //Has option: populated: true to get providers added
 app.put('/clients/modifyClient', clients.modifyClient)
 
 
