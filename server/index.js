@@ -20,12 +20,7 @@ app.post('/providers', providers.createNewProvider)
 app.get('/clients/id/:clientId', clients.getClientById)
 app.post('/clients', clients.createClient)
 app.post('/clients/deleteClient', clients.deleteClient)
-app.get('/all', clients.getClientsAndProviders)
-app.get('/allPopulated', clients.getClientsAndProvidersPopulated)
-
-
-
-
+app.get('/all', clients.getAll) //Has option: populated: true to get providers added
 
 app.listen(port, () => {
   console.log('Server listening at http://localhost:3000');
