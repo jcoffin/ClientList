@@ -94,7 +94,7 @@ const addMultipleProvidersToClient = async function (clientId, arrayOfProvidersI
 
   const asyncLoop = async function () {
     for (let i = 0; i < arrayOfProvidersIds.length; i++) {
-      await addProviderToClient(clientId, arrayOfProvidersIds[i])
+      await addProviderToClientUsingId(clientId, arrayOfProvidersIds[i])
     }
   }
   asyncLoop();

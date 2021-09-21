@@ -49,6 +49,15 @@ const addProviderToClientUsingEmail = async function (req, res) {
   .catch(err => console.log('Something went wrong', err))
   }
 
+const addMultipleProvidersToClient = async function (req, res) {
+
+  console.log(req.body)
+
+  client.addMultipleProvidersToClient(req.body.clientId, req.body.arrayOfProvidersIds)
+  .then(() => res.send('Providers have been added'))
+  .catch(err => console.log('An error occured', err))
+}
+
 
 module.exports = {
   getAllClients,
@@ -56,6 +65,7 @@ module.exports = {
   getClientByEmail,
   createClient,
   addProviderToClientUsingId,
-  addProviderToClientUsingEmail
+  addProviderToClientUsingEmail,
+  addMultipleProvidersToClient
 }
 
