@@ -16,6 +16,7 @@ app.use(express.static('./public'));
 app.get('/providers', providers.getAllProviders)
 app.get('/providers/id/:providerId', providers.getProviderById)
 app.get('/providers/name/:providerName', providers.getProviderByName)
+app.post('/providers', providers.createNewProvider)
 
 
 

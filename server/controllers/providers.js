@@ -26,10 +26,22 @@ const getProviderByName = async function (req, res) {
   res.send(responseData);
 }
 
+const createNewProvider = async function (req, res) {
+
+  provider.createNewProvider(req.body)
+  .then(() => {
+    console.log(`The provider ${req.body.name} was created`);
+    res.send(`The provider ${req.body.name} was created`)
+  })
+  .catch(err => console.log('Something went wrong', err))
+
+}
+
 
 
 module.exports = {
   getAllProviders,
   getProviderById,
-  getProviderByName
+  getProviderByName,
+  createNewProvider
 }
