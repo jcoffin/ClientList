@@ -21,6 +21,8 @@ app.post('/providers/changeName', providers.changeProviderName) //This route req
 
 // Routes for Clients
 app.get('/clients', clients.getAllClients)
+app.get('/clients/id/:clientId', clients.getClientById)
+
 
 
 app.listen(port, () => {
