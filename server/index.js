@@ -12,12 +12,15 @@ app.use(express.static('./public'));
 
 //ROUTES
 
-// Get all the providers
+// Routes for Providers
 app.get('/providers', providers.getAllProviders)
 app.get('/providers/id/:providerId', providers.getProviderById)
 app.get('/providers/name/:providerName', providers.getProviderByName)
 app.post('/providers', providers.createNewProvider)
+app.post('/providers/changeName', providers.changeProviderName) //This route requires an object {currentProviderName: 'name', newProviderName: 'name'} in the request
 
+// Routes for Clients
+app.get('/clients', clients.getAllClients)
 
 
 app.listen(port, () => {

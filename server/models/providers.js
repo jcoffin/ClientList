@@ -81,9 +81,6 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
 
 }
 
-// Delete Provider
-
-
 
 module.exports = {
   getAllProviders,
