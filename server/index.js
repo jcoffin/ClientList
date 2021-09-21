@@ -15,7 +15,6 @@ app.use(express.static('./public'));
 // Routes for Providers
 app.get('/providers/id/:providerId', providers.getProviderById)
 app.post('/providers', providers.createNewProvider)
-app.post('/providers/changeName', providers.changeProviderName) //This route requires an object {currentProviderName: 'name', newProviderName: 'name'} in the request
 
 // Routes for Clients
 app.get('/clients/id/:clientId', clients.getClientById)

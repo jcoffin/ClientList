@@ -16,10 +16,6 @@ const getProviderById = async function (id) {
   return provider;
 }
 
-// Get single Provider by name
-
-
-
 // Create new Provider (this will take an object with a name: String, client: array of Client ids as Strings)
 
 const createNewProvider = async function (provider) {
@@ -34,29 +30,8 @@ const createNewProvider = async function (provider) {
 
 }
 
-// Update Provider Information
-  // Change provider name
-
-  //issue: when the currentProviderName is not not correct, no document is found, but I still get the message back. Error handleing is incorrect. This may not be used in the app anyway
-
-const changeProviderName = async function (currentProviderName, newProviderName) {
-
-Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, {
-  new: true,
-  lean: true
-})
-.then(doc => {
-  //I could do error handling here but it feels hacky
-  console.log(`Provider name changed from ${currentProviderName} to ${newProviderName}`);
-  return doc
-})
-.catch(err => console.log('Could not change name', err))
-
-}
-
 
 module.exports = {
   getProviderById,
   createNewProvider,
-  changeProviderName
 }
