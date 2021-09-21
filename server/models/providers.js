@@ -1,22 +1,6 @@
 const db = require('../database/index.js')
 const { Provider } = require('../database/dbModels.js')
 
-// Get all Providers
-
-const getAllProviders = async function () {
-
-  let providers = await Provider.find({})
-  .lean()
-  .then(doc => {
-    console.log('Here are the providers you requested');
-    return doc;
-  })
-  .catch(err => console.log('Could not get providers', err))
-
-  return providers;
-
-}
-
 // Get single Provider by Id (id needs to be a string)
 
 const getProviderById = async function (id) {
@@ -34,18 +18,7 @@ const getProviderById = async function (id) {
 
 // Get single Provider by name
 
-const getProviderByName = async function (providerName) {
 
-  let provider = await Provider.find({name: providerName})
-  .lean()
-  .then(doc => {
-    console.log(`Sucessfully read ${providerName}`);
-    return doc
-  })
-  .catch(err => console.log(`Could not read ${providerName}`, err))
-
-  return provider;
-}
 
 // Create new Provider (this will take an object with a name: String, client: array of Client ids as Strings)
 
@@ -83,9 +56,7 @@ Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, 
 
 
 module.exports = {
-  getAllProviders,
   getProviderById,
-  getProviderByName,
   createNewProvider,
   changeProviderName
 }
