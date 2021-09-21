@@ -11,14 +11,6 @@ const getClientById = async function (req, res) {
   res.send(responseData)
 }
 
-const getClientByEmail = async function (req, res) {
-
-  console.log('Here', req.params.clientEmail)
-
-  let responseData = await client.getClientByEmail(req.params.clientEmail)
-
-  res.send(responseData)
-}
 
 const createClient = async function (req, res) {
 
@@ -79,7 +71,6 @@ const getClientsAndProvidersPopulated = async function(req, res){
 
 module.exports = {
   getClientById,
-  getClientByEmail,
   createClient,
   addProviderToClientUsingId,
   addMultipleProvidersToClient,
