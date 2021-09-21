@@ -16,21 +16,6 @@ const getClientById = async function (id) {
   return client;
 }
 
-// Get single Client by name
-
-const getClientByEmail = async function(clientEmail) {
-
-  let client = await Client.find({email: clientEmail})
-  .lean()
-  .then(doc => {
-    console.log('Sucessfully read client');
-    return doc
-  })
-  .catch(err => console.log('Could not read client', err))
-
-  return client;
-}
-
 // Add new Client (this will take a client object as a parameter)
 
 const createClient = async function(client) {
@@ -221,7 +206,6 @@ module.exports = {
   removeProviderFromClient,
   removeMultipleProvidersFromClient,
   getClientById,
-  getClientByEmail,
   createClient,
   deleteClient,
   modifyClient

@@ -18,6 +18,7 @@ app.post('/providers', providers.createNewProvider)
 
 // Routes for Clients
 app.get('/clients/id/:clientId', clients.getClientById)
+app.post('/clients/addProviders', clients.addProvidersToClient) //This may be a single providerId or an array of providerIds
 app.post('/clients', clients.createClient)
 app.post('/clients/addProviderById', clients.addProviderToClientUsingId) //This route requires an object (clientID: id, providerId: id2)
 app.post('/clients/addMultipleProviders', clients.addMultipleProvidersToClient)

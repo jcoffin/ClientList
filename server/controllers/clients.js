@@ -19,6 +19,21 @@ const createClient = async function (req, res) {
   .catch(err => console.log('Something went wrong', err))
 }
 
+const addProvidersToClient = async function (req, res) {
+
+  if (typeof(req.body.providers) === 'string') {
+    client.addProviderToClientUsingId(req.body.clientId, req.body.providerId)
+    .then(() => res.send('Provider added to Client'))
+    .catch(err => console.log('Something went wrong', err))
+  }
+  if (Array.isArray(req.body.providers)) {
+    client.addMultipleProvidersToClient(req.body.clientId, req.body.arrayOfProvidersIds)
+    .then(() => res.send('Providers have been added'))
+    .catch(err => console.log('An error occured', err))
+  }
+}
+
+
 const addProviderToClientUsingId = async function (req, res) {
 
 client.addProviderToClientUsingId(req.body.clientId, req.body.providerId)
@@ -78,6 +93,7 @@ module.exports = {
   removeMultipleProvidersFromClient,
   deleteClient,
   getClientsAndProviders,
-  getClientsAndProvidersPopulated
+  getClientsAndProvidersPopulated,
+  addProvidersToClient
 }
 
