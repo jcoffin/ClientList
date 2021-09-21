@@ -24,6 +24,7 @@ app.get('/clients', clients.getAllClients)
 app.get('/clients/id/:clientId', clients.getClientById)
 app.get('/clients/email/:clientEmail', clients.getClientByEmail)
 app.post('/clients', clients.createClient)
+app.post('/clients/addProviderById', clients.addProviderToClientUsingId) //This route requires an object (clientID: id, providerId: id2)
 
 
 

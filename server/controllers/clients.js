@@ -33,11 +33,19 @@ const createClient = async function (req, res) {
   .catch(err => console.log('Something went wrong', err))
 }
 
+const addProviderToClientUsingId = async function (req, res) {
+
+client.addProviderToClientUsingId(req.body.clientId, req.body.providerId)
+.then(() => res.send('Provider added to Client'))
+.catch(err => console.log('Something went wrong', err))
+}
+
 
 module.exports = {
   getAllClients,
   getClientById,
   getClientByEmail,
-  createClient
+  createClient,
+  addProviderToClientUsingId
 }
 
