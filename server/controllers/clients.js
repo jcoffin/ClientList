@@ -82,6 +82,14 @@ const getClientsAndProviders = async function(req, res){
   .catch(err => console.log('Something went wrong', err))
 }
 
+const getClientsAndProvidersPopulated = async function(req, res){
+  client.getClientsAndProvidersPopulated()
+  .then(doc => {
+    res.send(doc);
+  })
+  .catch(err => console.log('Something went wrong', err))
+}
+
 
 module.exports = {
   getAllClients,
@@ -94,6 +102,7 @@ module.exports = {
   removeProviderFromClient,
   removeMultipleProvidersFromClient,
   deleteClient,
-  getClientsAndProviders
+  getClientsAndProviders,
+  getClientsAndProvidersPopulated
 }
 
