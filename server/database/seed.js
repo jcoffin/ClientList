@@ -70,13 +70,13 @@ let seed = async function () {
 
     for (i = 0; i < allProviders.length; i++) {
       if (testProviders.includes(allProviders[i].name)) {
-        await client.addProviderToClientUsingName('Test', allProviders[i]._id)
+        await client.addProviderToClientUsingEmail('test@krfs.com', allProviders[i]._id)
       }
       if (test1Providers.includes(allProviders[i].name)) {
-        await client.addProviderToClientUsingName('Test1', allProviders[i]._id)
+        await client.addProviderToClientUsingEmail('test1@krfs.com', allProviders[i]._id)
       }
       if (test2Providers.includes(allProviders[i].name)) {
-        await client.addProviderToClientUsingName('Test2', allProviders[i]._id)
+        await client.addProviderToClientUsingEmail('test2@krfs.com', allProviders[i]._id)
       }
     }
   }

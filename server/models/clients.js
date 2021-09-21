@@ -77,14 +77,14 @@ const addProviderToClientUsingId = async function (clientId, providerId) {
 
 // This adds a providerId to the client's provider array given the clients' name
 
-const addProviderToClientUsingName = async function (clientName, providerId) {
+const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
 
-  Client.findOneAndUpdate({name: clientName}, {$push: {providers: providerId}}, {new: true})
+  Client.findOneAndUpdate({email: clientEmail}, {$push: {providers: providerId}}, {new: true})
   .then(doc => {
-    console.log(`Provider ${providerId} added to ${clientName} `);
+    console.log(`Provider ${providerId} added to client`);
     return doc;
   })
-  .catch(err => console.log(`Provider ${providerId} was NOT added to ${clientName} `, err))
+  .catch(err => console.log(`Provider ${providerId} was NOT added to client`, err))
 
 }
 
@@ -212,7 +212,7 @@ module.exports = {
   getClientsAndProviders,
   getClientsAndProvidersPopulated,
   addProviderToClientUsingId,
-  addProviderToClientUsingName,
+  addProviderToClientUsingEmail,
   addMultipleProvidersToClient,
   removeProviderFromClient,
   removeMultipleProvidersFromClient,
