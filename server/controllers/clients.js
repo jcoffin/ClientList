@@ -51,11 +51,15 @@ const addProviderToClientUsingEmail = async function (req, res) {
 
 const addMultipleProvidersToClient = async function (req, res) {
 
-  console.log(req.body)
-
   client.addMultipleProvidersToClient(req.body.clientId, req.body.arrayOfProvidersIds)
   .then(() => res.send('Providers have been added'))
   .catch(err => console.log('An error occured', err))
+}
+
+const removeProviderFromClient = async function (req, res) {
+  client.removeProviderFromClient(req.body.clientId, req.body.providerId)
+  .then(() => res.send('Provider removed'))
+  .catch(err => console.log('Something went wrong', err))
 }
 
 
@@ -66,6 +70,7 @@ module.exports = {
   createClient,
   addProviderToClientUsingId,
   addProviderToClientUsingEmail,
-  addMultipleProvidersToClient
+  addMultipleProvidersToClient,
+  removeProviderFromClient
 }
 
