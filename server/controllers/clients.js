@@ -33,32 +33,18 @@ const addProvidersToClient = async function (req, res) {
   }
 }
 
+const removeProvidersFromClient = async function (req, res) {
 
-const addProviderToClientUsingId = async function (req, res) {
-
-client.addProviderToClientUsingId(req.body.clientId, req.body.providerId)
-.then(() => res.send('Provider added to Client'))
-.catch(err => console.log('Something went wrong', err))
-}
-
-
-const addMultipleProvidersToClient = async function (req, res) {
-
-  client.addMultipleProvidersToClient(req.body.clientId, req.body.arrayOfProvidersIds)
-  .then(() => res.send('Providers have been added'))
-  .catch(err => console.log('An error occured', err))
-}
-
-const removeProviderFromClient = async function (req, res) {
-  client.removeProviderFromClient(req.body.clientId, req.body.providerId)
-  .then(() => res.send('Provider removed'))
-  .catch(err => console.log('Something went wrong', err))
-}
-
-const removeMultipleProvidersFromClient = async function(req, res) {
-  client.removeMultipleProvidersFromClient(req.body.clientId, req.body.arrayOfProvidersIds)
-  .then(() => res.send('Providers removed from client'))
-  .catch(err => console.log('Something went wrong', err))
+  if (typeof(req.body.providers) === 'string') {
+    client.removeProviderFromClient(req.body.clientId, req.body.providers)
+    .then(() => res.send('Provider removed'))
+    .catch(err => console.log('Something went wrong', err))
+  }
+  if (Array.isArray(req.body.providers)) {
+    client.removeMultipleProvidersFromClient(req.body.clientId, req.body.providers)
+    .then(() => res.send('Providers removed from client'))
+    .catch(err => console.log('Something went wrong', err))
+  }
 }
 
 const deleteClient = async function(req, res) {
@@ -87,12 +73,9 @@ const getClientsAndProvidersPopulated = async function(req, res){
 module.exports = {
   getClientById,
   createClient,
-  addProviderToClientUsingId,
-  addMultipleProvidersToClient,
-  removeProviderFromClient,
-  removeMultipleProvidersFromClient,
   deleteClient,
   getClientsAndProviders,
+  removeProvidersFromClient,
   getClientsAndProvidersPopulated,
   addProvidersToClient
 }
