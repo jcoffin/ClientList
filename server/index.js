@@ -18,9 +18,7 @@ app.post('/providers', providers.createNewProvider)
 
 // Routes for Clients
 app.get('/clients/id/:clientId', clients.getClientById)
-app.post('/clients/addProviders', clients.addProvidersToClient) //This may be a single providerId or an array of providerIds
 app.post('/clients', clients.createClient)
-app.put('/clients/removeProviders', clients.removeProvidersFromClient)
 app.post('/clients/deleteClient', clients.deleteClient)
 app.get('/all', clients.getClientsAndProviders)
 app.get('/allPopulated', clients.getClientsAndProvidersPopulated)

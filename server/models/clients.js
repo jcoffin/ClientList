@@ -34,19 +34,6 @@ const createClient = async function(client) {
 
 // Modify Client Information
 
-// This adds a providerId to the client's provider array given the client's Id
-
-const addProviderToClientUsingId = async function (clientId, providerId) {
-
-  Client.findByIdAndUpdate(clientId, {$push: {providers: providerId}}, {new: true})
-  .then(doc => {
-    console.log(`Provider ${providerId} added to client ${clientId} `);
-    return doc;
-  })
-  .catch(err => console.log(`Provider ${providerId} was NOT added to client ${clientId} `, err))
-
-}
-
 // This adds a providerId to the client's provider array given the clients' email. Used to seed database.
 
 const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
@@ -58,42 +45,6 @@ const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
   })
   .catch(err => console.log(`Provider ${providerId} was NOT added to client`, err))
 
-}
-
-// This adds multiple providerIds to the client's provider array
-
-const addMultipleProvidersToClient = async function (clientId, arrayOfProvidersIds) {
-
-  const asyncLoop = async function () {
-    for (let i = 0; i < arrayOfProvidersIds.length; i++) {
-      await addProviderToClientUsingId(clientId, arrayOfProvidersIds[i])
-    }
-  }
-  asyncLoop();
-}
-
-// Remove provider from client's provider array
-
-const removeProviderFromClient = async function (clientId, providerId) {
-
-  Client.findByIdAndUpdate(clientId, {$pull: {providers: providerId}}, {new: true})
-  .then(doc => {
-    console.log(`Provider ${providerId} removed from client ${clientId} `);
-    return doc;
-  })
-  .catch(err => console.log(`Provider ${providerId} was NOT removed from client ${clientId} `, err))
-}
-
-// Remove multiple providers at once from a client's provider array
-
-const removeMultipleProvidersFromClient = async function(clientId, arrayOfProvidersIds) {
-
-  let asyncLoop = async function () {
-    for (let i = 0; i < arrayOfProvidersIds.length; i++) {
-      await removeProviderFromClient(clientId, arrayOfProvidersIds[i])
-    }
-  }
-  asyncLoop();
 }
 
 const modifyClient = async function(clientId, newClientObject) {
@@ -200,11 +151,7 @@ const getClientsAndProvidersPopulated = async function() {
 module.exports = {
   getClientsAndProviders,
   getClientsAndProvidersPopulated,
-  addProviderToClientUsingId,
   addProviderToClientUsingEmail,
-  addMultipleProvidersToClient,
-  removeProviderFromClient,
-  removeMultipleProvidersFromClient,
   getClientById,
   createClient,
   deleteClient,
