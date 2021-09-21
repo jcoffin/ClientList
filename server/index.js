@@ -28,6 +28,7 @@ app.post('/clients/addProviderById', clients.addProviderToClientUsingId) //This 
 app.post('/clients/addProviderByEmail', clients.addProviderToClientUsingEmail) //This route requires an object (clientEmail: name, providerId: id)
 app.post('/clients/addMultipleProviders', clients.addMultipleProvidersToClient)
 app.put('/clients/removeProvider', clients.removeProviderFromClient)
+app.put('/clients/removeMultipleProviders', clients.removeMultipleProvidersFromClient)
 
 
 
