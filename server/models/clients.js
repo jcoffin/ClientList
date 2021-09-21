@@ -47,7 +47,7 @@ const createClient = async function(client) {
   .catch(err => console.log('Could not create client', err))
 }
 
-// Update Client Information
+// Modify Client Information
 
 // This adds a providerId to the client's provider array given the client's Id
 
@@ -62,7 +62,7 @@ const addProviderToClientUsingId = async function (clientId, providerId) {
 
 }
 
-// This adds a providerId to the client's provider array given the clients' name
+// This adds a providerId to the client's provider array given the clients' email. Used to seed database.
 
 const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
 
@@ -109,6 +109,23 @@ const removeMultipleProvidersFromClient = async function(clientId, arrayOfProvid
     }
   }
   asyncLoop();
+}
+
+const modifyClient = async function(clientId, newClientObject) {
+  Client.findByIdAndUpdate(clientId, {
+    name: newClientObject.name,
+    email: newClientObject.email,
+    phone: newClientObject.phone,
+    providers: newClientObject.providers
+  }, {
+    lean: true,
+    new: true
+  })
+  .then(doc => {
+    console.log('Updated client:', doc)
+    return doc
+  })
+  .catch(err => console.log('An error occured', err))
 }
 
 // Delete Client
