@@ -1,28 +1,28 @@
 const {client, provider } = require('../models/index.js');
 
-const getClientById = async function (req, res) {
-
-  console.log('Here', req.params.clientId)
-
-  let responseData = await client.getClientById(req.params.clientId)
-
-  res.send(responseData)
+const getClientById = function (req, res) {
+  client.getClientById(req.params.clientId)
+  .then(doc => {
+    res.send(doc)
+    return doc}
+    )
+  .catch(err => console.log('Something went wrong', err))
 }
 
-const createClient = async function (req, res) {
+const createClient = function (req, res) {
 
   client.createClient(req.body)
   .then(() => res.send('Client created'))
   .catch(err => console.log('Something went wrong', err))
 }
 
-const deleteClient = async function(req, res) {
+const deleteClient = function(req, res) {
   client.deleteClient(req.body.clientId)
   .then(() => res.send('Client Deleted'))
   .catch(err => console.log('Something went wrong', err))
 }
 
-const getAll = async function (req, res) {
+const getAll = function (req, res) {
 
   if (req.body.populated) {
     client.getClientsAndProvidersPopulated()
@@ -39,11 +39,22 @@ const getAll = async function (req, res) {
   }
 }
 
+const modifyClient = function (req, res) {
+
+  client.modifyClient(req.body.clientId, req.body.modifiedClient)
+  .then(() => {
+    res.send('Client modified')
+  })
+  .catch(err => console.log('Something went wrong', err))
+
+}
+
 
 
 
 module.exports = {
   getClientById,
+  modifyClient,
   createClient,
   deleteClient,
   getAll
