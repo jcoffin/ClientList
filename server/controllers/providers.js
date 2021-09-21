@@ -2,9 +2,9 @@ const {client, provider } = require('../models/index.js'); // These are the mode
 
 
 
-const getProviders = async function (req, res) {
+const getAllProviders = async function (req, res) {
 
-  let response = await provider.getAllProviders();
+  let responseData = await provider.getAllProviders();
 
   res.send(response);
 
@@ -12,18 +12,24 @@ const getProviders = async function (req, res) {
 
 const getProviderById = async function (req, res) {
 
-  let regEx = /\w\d[^\s\W]*/g;
+  let id = req.params.providerId
 
-  let id = req.params.providerId.match(regEx);
+  let responseData = await provider.getProviderById(id);
 
-  let response = await provider.getProviderById(id);
+  res.send(responseData);
+}
 
-  res.send(response);
+const getProviderByName = async function (req, res) {
+
+  let responseData = await provider.getProviderByName(req.params.providerName);
+
+  res.send(responseData);
 }
 
 
 
 module.exports = {
-  getProviders,
-  getProviderById
+  getAllProviders,
+  getProviderById,
+  getProviderByName
 }

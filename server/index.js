@@ -13,8 +13,9 @@ app.use(express.static('./public'));
 //ROUTES
 
 // Get all the providers
-app.get('/providers', providers.getProviders)
-app.get('/providers/:providerId', providers.getProviderById)
+app.get('/providers', providers.getAllProviders)
+app.get('/providers/id/:providerId', providers.getProviderById)
+app.get('/providers/name/:providerName', providers.getProviderByName)
 
 
 
