@@ -20,7 +20,6 @@ app.post('/providers', providers.createNewProvider)
 app.post('/providers/changeName', providers.changeProviderName) //This route requires an object {currentProviderName: 'name', newProviderName: 'name'} in the request
 
 // Routes for Clients
-app.get('/clients', clients.getAllClients)
 app.get('/clients/id/:clientId', clients.getClientById)
 app.get('/clients/email/:clientEmail', clients.getClientByEmail)
 app.post('/clients', clients.createClient)

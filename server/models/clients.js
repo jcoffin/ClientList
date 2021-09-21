@@ -1,19 +1,6 @@
 const db = require('../database/index.js');
 const { Client, Provider } = require('../database/dbModels.js');
 
-// Get all Clients
-
-const getAllClients = async function () {
-  let clients = await Client.find({})
-  .lean()
-  .then(docs => {
-    console.log('Successfully read all clients');
-    return docs;
-  })
-  .catch(err => console.log('Could not read all clients', err))
-
-  return clients;
-}
 
 // Get single Client by Id
 
@@ -216,7 +203,6 @@ module.exports = {
   addMultipleProvidersToClient,
   removeProviderFromClient,
   removeMultipleProvidersFromClient,
-  getAllClients,
   getClientById,
   getClientByEmail,
   createClient,

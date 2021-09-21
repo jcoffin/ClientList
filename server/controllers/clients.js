@@ -1,12 +1,6 @@
 const {client, provider } = require('../models/index.js');
 
-const getAllClients = async function (req, res) {
 
-  let responseData = await client.getAllClients();
-
-  res.send(responseData);
-
-  }
 
 const getClientById = async function (req, res) {
 
@@ -92,7 +86,6 @@ const getClientsAndProvidersPopulated = async function(req, res){
 
 
 module.exports = {
-  getAllClients,
   getClientById,
   getClientByEmail,
   createClient,
