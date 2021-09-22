@@ -24,7 +24,9 @@ const deleteClient = function(req, res) {
 
 const getAll = function (req, res) {
 
-  if (req.body.populated) {
+  console.log('Here we have them:', req.query)
+
+  if (req.query.populated) {
     client.getClientsAndProvidersPopulated()
     .then(doc => {
       res.send(doc);

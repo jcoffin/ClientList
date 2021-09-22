@@ -128,7 +128,6 @@ const getClientsAndProvidersPopulated = async function() {
 
   let promise2 = Provider.find({})
   .lean()
-  .populate("clients")
   .then(docs => {
     return docs
   })

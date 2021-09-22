@@ -20,7 +20,7 @@ app.post('/providers/changeName', providers.changeProviderName) //This route req
 
 // Routes for Clients
 app.get('/clients/id/:clientId', clients.getClientById)
-app.get('/all', clients.getAll) //Has option: populated: true to get providers added
+app.get('/all/?', clients.getAll) //Has a populated query paramater. If set to true it will get everything populated
 app.post('/clients', clients.createClient)
 app.post('/clients/deleteClient', clients.deleteClient)
 app.put('/clients/modifyClient', clients.modifyClient)
