@@ -24,8 +24,6 @@ const deleteClient = function(req, res) {
 
 const getAll = function (req, res) {
 
-  console.log('HERE', typeof(req.query.populated))
-
   if (req.query.populated === 'true') {
     client.getClientsAndProvidersPopulated()
     .then(doc => {
