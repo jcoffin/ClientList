@@ -1,18 +1,281 @@
 swagger: "2.0"
 info:
-  version: "1.0"
-  title: ClientListApi
-  description: This is the API for my technical challenge
-paths: {}
-# Added by API Auto Mocking Plugin
+  version: "0.1"
+  title: defaultTitle
+  description: defaultDescription
+  contact: {}
 host: localhost:3000
 basePath: /
 schemes:
-  - https
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /providers/changeName:
+    post:
+      description: Modify the name of a provider
+      summary: ProvidersChangeName_POST
+      operationId: ProvidersChangeName_POST
+      deprecated: false
+      produces:
+        - text/html; charset=utf-8
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: false
+          description: ""
+          schema:
+            $ref: "#/definitions/ProvidersChangeNameRequest"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+            default: ""
+          examples:
+            text/html; charset=utf-8: Name has been changed
+          headers: {}
+  /all:
+    get:
+      description: Get all clients and providers
+      summary: All_GET
+      operationId: All_GET
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: populated
+          in: query
+          required: false
+          type: string
+          description: Pass this the string 'true' to populate the clients' providers arrays with the whole provider rather than just the provider\'s id (see example 0)
+      responses:
+        "200":
+          description: Gets an object with a clients key and a providers key. The values of those keys is an array of all the clients and all the providers respectively.
+          schema:
+            type: object
+            default: ""
+          headers: {}
+  /providers/id/{providerId}:
+    get:
+      description: Get a single provider with that provider's id
+      summary: ProvidersIdByProviderId_GET
+      operationId: ProvidersIdByProviderId_GET
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: providerId
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: Numeric ID of the provider to get.
+      responses:
+        "200":
+          description: Responds with the provider
+          schema:
+            type: object
+            default: ""
+          headers: {}
+  /clients/id/{clientId}:
+    get:
+      description: Get a single client with the client's id
+      summary: ClientsIdByClientId_GET
+      operationId: ClientsIdByClientId_GET
+      deprecated: false
+      produces:
+        - application/json; charset=utf-8
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: Numeric ID of the client to get.
+      responses:
+        "200":
+          description: Responds with the client
+          schema:
+            type: object
+            default: ""
+          examples:
+            application/json; charset=utf-8:
+              _id: 614a3d83af489f20baa19067
+              name: Kraytenstien
+              email: Krayt@dragon.com
+              phone: 9875998433
+              providers:
+                - 614a3d83af489f20baa19072
+                - 614a3d83af489f20baa19071
+                - 614a3d83af489f20baa19070
+              __v: 0
+          headers: {}
+  /clients/createClient:
+    post:
+      description: Creates a new client
+      summary: ClientsCreateClient_POST
+      operationId: ClientsCreateClient_POST
+      deprecated: false
+      produces:
+        - text/html; charset=utf-8
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: false
+          description: ""
+          schema:
+            $ref: "#/definitions/ClientsCreateClientRequest"
+      responses:
+        "200":
+          description: Confirms client creation
+          schema:
+            type: string
+            default: ""
+          examples:
+            text/html; charset=utf-8: Client created
+          headers: {}
+  /clients/modifyClient:
+    put:
+      description: Modifies an existing client.
+      summary: ClientsModifyClient_PUT
+      operationId: ClientsModifyClient_PUT
+      deprecated: false
+      produces:
+        - text/html; charset=utf-8
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: false
+          description: ""
+          schema:
+            $ref: "#/definitions/ClientsModifyClientRequest"
+      responses:
+        "200":
+          description: Confirms modification of the client
+          schema:
+            type: string
+            default: ""
+          examples:
+            text/html; charset=utf-8: Client modified
+          headers: {}
+  /clients/deleteClient:
+    post:
+      description: DeletesClient
+      summary: ClientsDeleteClient_POST
+      operationId: ClientsDeleteClient_POST
+      deprecated: false
+      produces:
+        - text/html; charset=utf-8
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: false
+          description: ""
+          schema:
+            $ref: "#/definitions/ClientsDeleteClientRequest"
+      responses:
+        "200":
+          description: Confirms deletion of the client
+          schema:
+            type: string
+            default: ""
+          examples:
+            text/html; charset=utf-8: Client deleted
+          headers: {}
+  /providers/createNewProvider:
+    post:
+      description: Creates a new provider
+      summary: ProvidersCreateNewProvider_POST
+      operationId: ProvidersCreateNewProvider_POST
+      deprecated: false
+      produces:
+        - text/html; charset=utf-8
+      consumes:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          required: false
+          description: ""
+          schema:
+            $ref: "#/definitions/ProvidersCreateNewProviderRequest"
+      responses:
+        "200":
+          description: Confirms creation of provider
+          schema:
+            type: string
+            default: ""
+          examples:
+            text/html; charset=utf-8: The provider {providerName} was created
+          headers: {}
 definitions:
-  Model:
+  ProvidersChangeNameRequest:
+    title: ProvidersChangeNameRequest
     type: object
     properties:
-      id:
-        type: integer
-        format: int64
+      currentProviderName:
+        type: string
+      newProviderName:
+        type: string
+  ClientsCreateClientRequest:
+    title: ClientsCreateClientRequest
+    type: object
+    properties:
+      phone:
+        type: number
+        format: double
+      name:
+        type: string
+      email:
+        type: string
+      providers:
+        type: array
+        items:
+          type: string
+  ClientsModifyClientRequest:
+    title: ClientsModifyClientRequest
+    type: object
+    properties:
+      clientId:
+        type: string
+      modifiedClient:
+        $ref: "#/definitions/ModifiedClient"
+  ModifiedClient:
+    title: ModifiedClient
+    type: object
+    properties:
+      phone:
+        type: number
+        format: double
+      name:
+        type: string
+      email:
+        type: string
+      providers:
+        type: array
+        items:
+          type: string
+  ClientsDeleteClientRequest:
+    title: ClientsDeleteClientRequest
+    type: object
+    properties:
+      clientId:
+        type: string
+  ProvidersCreateNewProviderRequest:
+    title: ProvidersCreateNewProviderRequest
+    type: object
+    properties:
+      name:
+        type: string
+tags: []

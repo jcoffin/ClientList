@@ -12,7 +12,7 @@ const getClientById = function (req, res) {
 const createClient = function (req, res) {
 
   client.createClient(req.body)
-  .then(() => res.send('Client created'))
+  .then((doc) => res.send('Client created'))
   .catch(err => console.log('Something went wrong', err))
 }
 
@@ -24,9 +24,9 @@ const deleteClient = function(req, res) {
 
 const getAll = function (req, res) {
 
-  console.log('Here we have them:', req.query)
+  console.log('HERE', typeof(req.query.populated))
 
-  if (req.query.populated) {
+  if (req.query.populated === 'true') {
     client.getClientsAndProvidersPopulated()
     .then(doc => {
       res.send(doc);
