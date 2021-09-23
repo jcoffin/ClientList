@@ -1,281 +1,466 @@
-swagger: "2.0"
+openapi: 3.0.1
 info:
-  version: "0.1"
   title: defaultTitle
   description: defaultDescription
-  contact: {}
-host: localhost:3000
-basePath: /
-schemes:
-  - http
-consumes:
-  - application/json
-produces:
-  - application/json
+  version: "0.1"
+servers:
+  - url: http://localhost:3000
 paths:
   /providers/changeName:
     post:
       description: Modify the name of a provider
-      summary: ProvidersChangeName_POST
-      operationId: ProvidersChangeName_POST
-      deprecated: false
-      produces:
-        - text/html; charset=utf-8
-      consumes:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: false
-          description: ""
-          schema:
-            $ref: "#/definitions/ProvidersChangeNameRequest"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentProviderName:
+                  type: string
+                newProviderName:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                    "currentProviderName": "Bagheera",
+                    "newProviderName": "Baloo"
+                  }
       responses:
         "200":
           description: Success
-          schema:
-            type: string
-            default: ""
-          examples:
-            text/html; charset=utf-8: Name has been changed
-          headers: {}
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: |-
+                    Name has been changed
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
   /all:
     get:
       description: Get all clients and providers
-      summary: All_GET
-      operationId: All_GET
-      deprecated: false
-      produces:
-        - application/json; charset=utf-8
       parameters:
-        - name: populated
-          in: query
-          required: false
-          type: string
+        - in: query
+          name: populated
+          schema:
+            type: string
           description: Pass this the string 'true' to populate the clients' providers arrays with the whole provider rather than just the provider\'s id (see example 0)
       responses:
         "200":
           description: Gets an object with a clients key and a providers key. The values of those keys is an array of all the clients and all the providers respectively.
-          schema:
-            type: object
-            default: ""
-          headers: {}
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+              examples:
+                "0":
+                  value: |-
+                    {
+                      "clients": [
+                          {
+                              "_id": "614a3d83af489f20baa19068",
+                              "name": "Test1",
+                              "email": "test1@krfs.com",
+                              "phone": 3050005555,
+                              "providers": [
+                                  {
+                                      "_id": "614a3d83af489f20baa19070",
+                                      "name": "Provider3",
+                                      "__v": 0
+                                  }
+                              ],
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19069",
+                              "name": "Kriea",
+                              "email": "Sith@goodgirl.com",
+                              "phone": 7777777777,
+                              "providers": [
+                                  {
+                                      "_id": "614a3d83af489f20baa1906e",
+                                      "name": "Provider1",
+                                      "__v": 0
+                                  }
+                              ],
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614cc26e291c1df0562d6120",
+                              "name": "Sharmane",
+                              "email": "this@that.com",
+                              "phone": 5489770987,
+                              "providers": [
+                                  {
+                                      "_id": "614a3d83af489f20baa19072",
+                                      "name": "Provider5",
+                                      "__v": 0
+                                  },
+                                  {
+                                      "_id": "614ba218c8ea35cc2a2c8adf",
+                                      "name": "What does it matter?",
+                                      "__v": 0
+                                  }
+                              ],
+                              "__v": 0
+                          }
+                      ],
+                      "providers": [
+                          {
+                              "_id": "614a3d83af489f20baa1906e",
+                              "name": "Provider1",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa1906f",
+                              "name": "Provider2",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19070",
+                              "name": "Provider3",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19071",
+                              "name": "Provider4",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19072",
+                              "name": "Provider5",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614ba218c8ea35cc2a2c8adf",
+                              "name": "What does it matter?",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614ba318c8ea35cc2a2c8ae1",
+                              "name": "Dark Wing Duck!",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614ba577cfd01ff4f5107649",
+                              "name": "Bagheera",
+                              "__v": 0
+                          },
+                          {
+                              "_id": "614cc7e3ddc7a671a714edbd",
+                              "name": "RainDrops",
+                              "__v": 0
+                          }
+                      ]
+                    }
+
+                "1":
+                  value: |-
+                    {
+                      "clients": [
+                          {
+                              "_id": "614a3d83af489f20baa19068",
+                              "name": "Test1",
+                              "email": "test1@krfs.com",
+                              "phone": 3050005555,
+                              "providers": [
+                                  "614a3d83af489f20baa19070"
+                              ]
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19069",
+                              "name": "Kriea",
+                              "email": "Sith@goodgirl.com",
+                              "phone": 7777777777,
+                              "providers": [
+                                  "614a3d83af489f20baa1906e"
+                              ]
+                          },
+                          {
+                              "_id": "614cc26e291c1df0562d6120",
+                              "name": "Sharmane",
+                              "email": "this@that.com",
+                              "phone": 5489770987,
+                              "providers": [
+                                  "614a3d83af489f20baa19072",
+                                  "614ba218c8ea35cc2a2c8adf"
+                              ]
+                          }
+                      ],
+                      "providers": [
+                          {
+                              "_id": "614a3d83af489f20baa1906e",
+                              "name": "Provider1"
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa1906f",
+                              "name": "Provider2"
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19070",
+                              "name": "Provider3"
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19071",
+                              "name": "Provider4"
+                          },
+                          {
+                              "_id": "614a3d83af489f20baa19072",
+                              "name": "Provider5"
+                          },
+                          {
+                              "_id": "614ba218c8ea35cc2a2c8adf",
+                              "name": "What does it matter?"
+                          },
+                          {
+                              "_id": "614ba318c8ea35cc2a2c8ae1",
+                              "name": "Dark Wing Duck!"
+                          },
+                          {
+                              "_id": "614ba577cfd01ff4f5107649",
+                              "name": "Bagheera"
+                          },
+                          {
+                              "_id": "614cc7e3ddc7a671a714edbd",
+                              "name": "RainDrops"
+                          }
+                      ]
+                    }
+
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
   /providers/id/{providerId}:
     get:
       description: Get a single provider with that provider's id
-      summary: ProvidersIdByProviderId_GET
-      operationId: ProvidersIdByProviderId_GET
-      deprecated: false
-      produces:
-        - application/json; charset=utf-8
       parameters:
-        - name: providerId
-          in: path
-          required: true
-          type: integer
-          format: int32
+        - in: path
+          name: providerId
+          schema:
+            type: integer
+          required: true # <----------
           description: Numeric ID of the provider to get.
       responses:
         "200":
           description: Responds with the provider
-          schema:
-            type: object
-            default: ""
-          headers: {}
+          content:
+            application/json; charset=utf-8:
+              schema:
+                type: object
+              examples:
+                "0":
+                  value: |-
+                    {
+                      "_id": "614cc7e3ddc7a671a714edbd",
+                      "name": "RainDrops",
+                      "__v": 0
+                    }
+
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
   /clients/id/{clientId}:
     get:
       description: Get a single client with the client's id
-      summary: ClientsIdByClientId_GET
-      operationId: ClientsIdByClientId_GET
-      deprecated: false
-      produces:
-        - application/json; charset=utf-8
       parameters:
-        - name: clientId
-          in: path
-          required: true
-          type: integer
-          format: int32
+        - in: path
+          name: clientId
+          schema:
+            type: integer
+          required: true # <----------
           description: Numeric ID of the client to get.
       responses:
         "200":
           description: Responds with the client
-          schema:
-            type: object
-            default: ""
-          examples:
+          content:
             application/json; charset=utf-8:
-              _id: 614a3d83af489f20baa19067
-              name: Kraytenstien
-              email: Krayt@dragon.com
-              phone: 9875998433
-              providers:
-                - 614a3d83af489f20baa19072
-                - 614a3d83af489f20baa19071
-                - 614a3d83af489f20baa19070
-              __v: 0
-          headers: {}
+              schema:
+                type: object
+              examples:
+                "0":
+                  value:
+                    {
+                      "_id": "614a3d83af489f20baa19067",
+                      "name": "Kraytenstien",
+                      "email": "Krayt@dragon.com",
+                      "phone": 9875998433,
+                      "providers":
+                        [
+                          "614a3d83af489f20baa19072",
+                          "614a3d83af489f20baa19071",
+                          "614a3d83af489f20baa19070",
+                        ],
+                      "__v": 0,
+                    }
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
+  /all/:
+    servers:
+      - url: http://localhost:3000
   /clients/createClient:
     post:
       description: Creates a new client
-      summary: ClientsCreateClient_POST
-      operationId: ClientsCreateClient_POST
-      deprecated: false
-      produces:
-        - text/html; charset=utf-8
-      consumes:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: false
-          description: ""
-          schema:
-            $ref: "#/definitions/ClientsCreateClientRequest"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: number
+                name:
+                  type: string
+                email:
+                  type: string
+                providers:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                    "name": "Darth Revan",
+                    "email": "darksider@empire.com",
+                    "phone": 80074845673,
+                    "providers": ["614cc7e3ddc7a671a714edbd", "614ba577cfd01ff4f5107649"]
+
+                  }
       responses:
         "200":
           description: Confirms client creation
-          schema:
-            type: string
-            default: ""
-          examples:
-            text/html; charset=utf-8: Client created
-          headers: {}
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: Client created
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
   /clients/modifyClient:
     put:
       description: Modifies an existing client.
-      summary: ClientsModifyClient_PUT
-      operationId: ClientsModifyClient_PUT
-      deprecated: false
-      produces:
-        - text/html; charset=utf-8
-      consumes:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: false
-          description: ""
-          schema:
-            $ref: "#/definitions/ClientsModifyClientRequest"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId:
+                  type: string
+                modifiedClient:
+                  type: object
+                  properties:
+                    phone:
+                      type: number
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    providers:
+                      type: array
+                      items:
+                        type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                    "clientId": "614cc26e291c1df0562d6120",
+                    "modifiedClient": {
+                        "name": "The Outcast",
+                        "email": "woundedforce@jedi.com",
+                        "phone": 80053346483,
+                        "providers": ["614ba577cfd01ff4f5107649", "614ba318c8ea35cc2a2c8ae1"]
+                    }
+                  }
       responses:
         "200":
           description: Confirms modification of the client
-          schema:
-            type: string
-            default: ""
-          examples:
-            text/html; charset=utf-8: Client modified
-          headers: {}
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: |-
+                    Client modified
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
   /clients/deleteClient:
     post:
       description: DeletesClient
-      summary: ClientsDeleteClient_POST
-      operationId: ClientsDeleteClient_POST
-      deprecated: false
-      produces:
-        - text/html; charset=utf-8
-      consumes:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: false
-          description: ""
-          schema:
-            $ref: "#/definitions/ClientsDeleteClientRequest"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                    "clientId": "614a3d83af489f20baa19068"
+                  }
       responses:
         "200":
           description: Confirms deletion of the client
-          schema:
-            type: string
-            default: ""
-          examples:
-            text/html; charset=utf-8: Client deleted
-          headers: {}
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: |-
+                    Client deleted
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
   /providers/createNewProvider:
     post:
       description: Creates a new provider
-      summary: ProvidersCreateNewProvider_POST
-      operationId: ProvidersCreateNewProvider_POST
-      deprecated: false
-      produces:
-        - text/html; charset=utf-8
-      consumes:
-        - application/json
-      parameters:
-        - name: body
-          in: body
-          required: false
-          description: ""
-          schema:
-            $ref: "#/definitions/ProvidersCreateNewProviderRequest"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                    "name": "RainDrops"
+                  }
       responses:
         "200":
           description: Confirms creation of provider
-          schema:
-            type: string
-            default: ""
-          examples:
-            text/html; charset=utf-8: The provider {providerName} was created
-          headers: {}
-definitions:
-  ProvidersChangeNameRequest:
-    title: ProvidersChangeNameRequest
-    type: object
-    properties:
-      currentProviderName:
-        type: string
-      newProviderName:
-        type: string
-  ClientsCreateClientRequest:
-    title: ClientsCreateClientRequest
-    type: object
-    properties:
-      phone:
-        type: number
-        format: double
-      name:
-        type: string
-      email:
-        type: string
-      providers:
-        type: array
-        items:
-          type: string
-  ClientsModifyClientRequest:
-    title: ClientsModifyClientRequest
-    type: object
-    properties:
-      clientId:
-        type: string
-      modifiedClient:
-        $ref: "#/definitions/ModifiedClient"
-  ModifiedClient:
-    title: ModifiedClient
-    type: object
-    properties:
-      phone:
-        type: number
-        format: double
-      name:
-        type: string
-      email:
-        type: string
-      providers:
-        type: array
-        items:
-          type: string
-  ClientsDeleteClientRequest:
-    title: ClientsDeleteClientRequest
-    type: object
-    properties:
-      clientId:
-        type: string
-  ProvidersCreateNewProviderRequest:
-    title: ProvidersCreateNewProviderRequest
-    type: object
-    properties:
-      name:
-        type: string
-tags: []
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples:
+                "0":
+                  value: |-
+                    The provider {providerName} was created
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
