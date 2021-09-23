@@ -7,7 +7,7 @@ servers:
   - url: http://localhost:3000
 paths:
   /providers/changeName:
-    post:
+    put:
       description: Modify the name of a provider
       requestBody:
         content:
