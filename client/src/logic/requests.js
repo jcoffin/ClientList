@@ -132,6 +132,7 @@ const modifyClient = function(obj) {
 
 module.exports = {
   modifyClient,
+  createClient,
   changeProviderName,
   deleteClient,
   createNewProvider,
