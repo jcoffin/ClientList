@@ -5,18 +5,11 @@ const { Client, Provider } = require('../database/dbModels.js');
 // Get single Client by Id
 
 const getClientById = async function (id) {
-  let client = await Client.findById(id)
-  .lean()
-  .then(doc => {
-    console.log('The client was sucessfully read');
-    return doc
-  })
-  .catch(err => console.log('Could not get client', err))
-
-  return client;
-}
-
-// Add new Client (this will take a client object as a parameter)
+  try {
+    return Client.findById(id).lean();
+  } catch (err) {
+    console.log('Could not get client', err);
+  }
 
 const createClient = async function(client) {
 
