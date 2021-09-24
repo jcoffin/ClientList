@@ -10,6 +10,7 @@ const getClientById = async function (id) {
   } catch (err) {
     console.log('Could not get client', err);
   }
+}
 
 const createClient = async function(client) {
 
