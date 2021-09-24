@@ -129,3 +129,13 @@ const modifyClient = function(obj) {
   .then(res => console.log(JSON.stringify(res.data)))
   .catch(err => console.log('Something went wrong', err));
 }
+
+module.exports = {
+  modifyClient,
+  changeProviderName,
+  deleteClient,
+  createNewProvider,
+  getProviderById,
+  getClientById,
+  getAll
+}
