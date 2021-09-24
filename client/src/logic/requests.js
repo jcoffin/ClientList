@@ -94,3 +94,21 @@ const deleteClient = function(clientId) {
 }
 
 
+// Puts
+
+const changeProviderName = function(obj) {
+  var data = JSON.stringify(obj);
+
+  var config = {
+    method: 'put',
+    url: 'http://localhost:3000/providers/changeName',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(res => console.log(JSON.stringify(res.data)))
+  .catch(err => console.log('Something went wrong', err));
+}
