@@ -112,3 +112,20 @@ const changeProviderName = function(obj) {
   .then(res => console.log(JSON.stringify(res.data)))
   .catch(err => console.log('Something went wrong', err));
 }
+
+const modifyClient = function(obj) {
+  var data = JSON.stringify(obj);
+
+  var config = {
+    method: 'put',
+    url: 'http://localhost:3000/clients/modifyClient',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(res => console.log(JSON.stringify(res.data)))
+  .catch(err => console.log('Something went wrong', err));
+}
