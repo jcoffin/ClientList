@@ -39,12 +39,7 @@ const getProviderById = function(ProviderId) {
 // Posts
 
 const createClient = function(client) {
-  var data = JSON.stringify({
-    "name": client.name,
-    "email": client.email,
-    "phone": client.phone,
-    "providers": client.providers
-  });
+  var data = JSON.stringify(client);
 
   var config = {
     method: 'post',
@@ -59,5 +54,35 @@ const createClient = function(client) {
   .then(res => console.log(JSON.stringify(res.data)))
   .catch(err => console.log('Something went wrong', err));
 }
+
+const createNewProvider = function(provider) {
+  var data = JSON.stringify(provider);
+
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3000/providers/createNewProvider/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(res => console.log(JSON.stringify(res.data)))
+  .catch(err => console.log('Something went wrong', err));
+}
+
+createClient(
+  {
+    name: 'Jack',
+    email: 'Jill@jane.com',
+    phone: 909093,
+    providers: []
+  }
+)
+
+createNewProvider({
+  name: 'Provider13'
+})
 
 
