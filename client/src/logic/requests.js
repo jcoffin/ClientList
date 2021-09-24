@@ -72,17 +72,25 @@ const createNewProvider = function(provider) {
   .catch(err => console.log('Something went wrong', err));
 }
 
-createClient(
-  {
-    name: 'Jack',
-    email: 'Jill@jane.com',
-    phone: 909093,
-    providers: []
-  }
-)
+const deleteClient = function(clientId) {
 
-createNewProvider({
-  name: 'Provider13'
-})
+  var data = JSON.stringify({
+    "clientId": clientId
+  });
+
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3000/clients/deleteClient/',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(res => console.log(JSON.stringify(res.data)))
+  .catch(err => console.log('Something went wrong', err));
+
+}
 
 
